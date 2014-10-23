@@ -1,32 +1,37 @@
-TrelloClone.Routers.Router = Backbone.Router.extend {
+TrelloClone.Routers.Router = Backbone.Router.extend({
   routes: {
-    "boards": "boardsIndex",
+    "": "boardsIndex",
     "boards/new": "boardsNew",
     "boards/:id": "boardShow",
     "boards/:id/delete": "boardsDestroy"
   },
 
   initialize: function(options) {
-    this.boards = options.boards;
+    this.boards = TrelloClone.Collections.boards;
   },
 
   boardsIndex: function() {
-    var indexView = new Backbone.Views.Boards({collection: this.boards});
+    this.boards.fetch();
+    var indexView = new TrelloClone.Views.BoardsIndex({collection: this.boards});
     this.swapView(indexView);
-    indexView.render();
+    $("div#main").html(indexView.render().$el);
   },
 
   boardShow: function(id) {
     var board = this.boards.fetchOrGet(id);
-    var showView = new Backbone.Views.Board({model: board});
+    console.log("show router", board);
+    var showView = new TrelloClone.Views.BoardsShow({
+      collection: this.boards,
+      model: board
+    });
     this.swapView(showView);
-    showView.render();
+    $("div#main").html(showView.render().$el);
   },
 
   boardsNew: function() {
-    var newView = new Backbone.Views.Boards({collection: this.boards});
+    var newView = new TrelloClone.Views.BoardsNew({collection: this.boards});
     this.swapView(indexView);
-    newView.render();
+    $("div#main").html(newView.render().$el);
   },
 
   boardsDestroy: function(id) {
@@ -42,15 +47,4 @@ TrelloClone.Routers.Router = Backbone.Router.extend {
     return this._currentView;
   },
 
-  fetchOrGet: function(id) {
-    if(var board = this.boards.get(id)) {
-      board.fetch();
-    } else {
-      var board = new TrelloClone.Models.Board(id: id);
-      board.fetch();
-      this.boards.add(board);
-    }
-    return board;
-  }
-
-}
+});

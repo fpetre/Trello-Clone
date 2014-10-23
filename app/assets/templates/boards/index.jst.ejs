@@ -1,0 +1,9 @@
+<h1> My Boards </h1>
+
+<% boards.each( function(board) { %>
+  <ul>
+    <li>
+      <a href="<%= "#boards/" + board.id %>"><%= board.get("title") %></a>
+    </li>
+  </ul>
+<% }) %>
