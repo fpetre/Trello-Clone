@@ -1,29 +1,27 @@
 TrelloClone.Views.BoardsNew = Backbone.CompositeView.extend({
   template: JST["boards/new"],
 
+  initialize: function (){
+    this.board = this.model || new TrelloClone.Models.Board();
+  },
+
   events: {
     "submit form": "submit"
   },
-  // initialize: function(){
- //    this.listenTo(this.collection, "add remove sync change", this.render);
- //  },
 
   render: function() {
-    renderedContent = this.template({boards: this.collection});
+    var renderedContent = this.template({board: this.board});
     this.$el.html(renderedContent);
     return this;
   },
 
   submit: function(event) {
     event.preventDefault();
-    formData = event.currentTarget;
-     console.log($(formData).serializeJSON())
-    boardAttr = $(formData).serializeJSON();
-
-    newBoard = new TrelloClone.Models.Board();
-    newBoard.save(boardAttr, {
+    var formData = event.currentTarget;
+    var boardAttr = $(formData).serializeJSON();
+    this.board.save(boardAttr, {
       success: function(model) {
-        TrelloClone.Collections.boards.add(model);
+        TrelloClone.Collections.boards.set(model);
         Backbone.history.navigate("",{trigger: true})
       }
     });

@@ -10,6 +10,16 @@
       end
     end
 
+    def update
+      @board = Board.find(params[:id])
+
+      if @board.update(board_params)
+        render json: @board
+      else
+        render json: @board.errors.full_messages, status: :unprocessable_entity
+      end
+    end
+
     def destroy
       @board = current_user.boards.find(params[:id])
       @board.try(:destroy)
