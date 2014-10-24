@@ -21,7 +21,7 @@ TrelloClone.Views.BoardsNew = Backbone.CompositeView.extend({
     var boardAttr = $(formData).serializeJSON();
     this.board.save(boardAttr, {
       success: function(model) {
-        TrelloClone.Collections.boards.set(model);
+        TrelloClone.Collections.boards.add(model);
         Backbone.history.navigate("boards/" + model.id,{trigger: true})
       }
     });

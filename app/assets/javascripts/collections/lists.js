@@ -1,6 +1,6 @@
 TrelloClone.Collections.Lists = Backbone.Collection.extend({
   url: function(){
-    var url = "/api/boards/" + this.board_id + "lists";
+    var url = "/api/boards/" + this.get("board_id") + "lists";
     return url;
   },
 

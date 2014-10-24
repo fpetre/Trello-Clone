@@ -1,14 +1,12 @@
 TrelloClone.Models.List = Backbone.Model.extend({
-  urlRoot: function(){
-    var url = "/api/boards/" + this.board_id + "lists";
-    return url;
-  },
+  urlRoot: "api/lists",
   cards: function () {
     this._cards = this._cards || new TrelloClone.Collections.Cards();
     return this._cards;
   },
 
   parse: function (response) {
+    if(!response.cards){return response;}
     cardsAttr = response.cards;
     cards = this.cards();
     cards.set(cardsAttr);
