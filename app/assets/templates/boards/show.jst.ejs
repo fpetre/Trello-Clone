@@ -1,13 +1,9 @@
 <h1 class="board-title"> board: <%= board.get("title") %> </h1>
 <button class="board-remove">Remove Board</button>
 
-<ul>
-  <% board.lists().each(function (list) { %>
-    <li><%= list.get("title") %></li>
-  <% }) %>
-</ul>
+<ul class="lists"> lists </ul>
+
 
 <a href="<%= '#boards/'+ board.id + '/lists/new' %>">Create List</a>
-
 
 

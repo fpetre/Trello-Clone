@@ -4,6 +4,8 @@ TrelloClone.Collections.Cards = Backbone.Collection.extend({
     return url;
   },
 
+  comparator: "ord",
+
   model: TrelloClone.Models.Card,
 
   fetchOrGet: function(id) {

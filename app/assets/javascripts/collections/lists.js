@@ -4,7 +4,7 @@ TrelloClone.Collections.Lists = Backbone.Collection.extend({
     return url;
   },
 
-  copmarator: "ord",
+  comparator: "ord",
 
   model: TrelloClone.Models.List,
 

@@ -1,4 +1,4 @@
-TrelloClone.Views.ListsNew = Backbone.View.extend({
+TrelloClone.Views.ListsNew = Backbone.CompositeView.extend({
   template: JST["lists/new"],
 
   initialize: function(){
