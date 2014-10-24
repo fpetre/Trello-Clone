@@ -4,6 +4,8 @@
     <li>
       <a href="<%= "#boards/" + board.id %>"><%= board.get("title") %></a>
     </li>
+    <button class="remove-board" data-board-id="<%= board.id %>">Remove</button>
+    <br></br>
 <% }) %>
   <li><a href="#boards/new">Create new board...</a></li>
   </ul>

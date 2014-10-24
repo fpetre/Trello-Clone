@@ -4,6 +4,8 @@ TrelloClone.Collections.Lists = Backbone.Collection.extend({
     return url;
   },
 
+  copmarator: "ord",
+
   model: TrelloClone.Models.List,
 
   fetchOrGet: function(id) {
