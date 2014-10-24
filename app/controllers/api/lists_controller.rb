@@ -28,6 +28,16 @@ module Api
       end
     end
 
+    def show
+      @list = current_board.lists.find(params[:id])
+      render :show    #look here if have trouble showing empty list
+    end
+
+    def index
+      @lists = current_board.lists
+      render json: @list
+    end
+
     private
 
     def current_board

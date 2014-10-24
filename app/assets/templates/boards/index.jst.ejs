@@ -1,9 +1,9 @@
 <h1> My Boards </h1>
-
-<% boards.each( function(board) { %>
   <ul>
+<% boards.each( function(board) { %>
     <li>
       <a href="<%= "#boards/" + board.id %>"><%= board.get("title") %></a>
     </li>
-  </ul>
 <% }) %>
+  <li><a href="#boards/new">Create new board...</a></li>
+  </ul>

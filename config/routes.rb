@@ -5,9 +5,13 @@ TrelloClone::Application.routes.draw do
   resource :session
 
   namespace :api, defaults: { format: :json } do
-    resources :boards, except: [:new, :edit]
-    resources :lists, only: [:create, :update, :destroy]
-    resources :cards, only: [:create, :update, :destroy]
+    resources :boards, except: [:new, :edit] do
+      resources :lists, only: [:index]
+    end
+    resources :lists, only: [:create, :update, :destroy, :show] do
+      resources :cards, only: [:index]
+    end
+    resources :cards, only: [:create, :update, :destroy, :show]
 
     # resources :items
     # resources :board_memberships
